@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="bulma.css">
+    <script src="index.js"></script>
+</head>
+
+<body>
+
+    <div class="container" style="max-width: 500px;">
+        <section class="hero is-medium is-primary is-bold">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        PDF-Kopierschutz 
+                    </h1>
+                    <h2 class="subtitle">
+                        Ein PDF für die Weitergabe an Dritte vorbereiten
+                    </h2>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <div class="container" style="max-width: 500px;">
+        <div class="content">
+            <ul>
+                <li>Bilder in Deinem PDF werden auf eine Ebene reduziert, sodass einzelne Objekte schwerer zu kopieren sind.</li>
+                <li>Alle Funktionen außer dem Drucken werden deaktiviert.</li>
+                <li>Das PDF darf maximal 20 MB groß sein.</li>
+                <li><strong>Wichtig:</strong> Behalte immer Deine originalen PDFs.</li>
+            </ul>
+            
+        </div>
+
+        <div class="field">
+            <form action="/protect_pdf" method="post" enctype="multipart/form-data">
+                <!-- <input type="text" name="textfield"><br /> -->
+                <!-- <input type="file" name="filefield"><br /> -->
+
+                <div class="file has-name is-fullwidth">
+                    <label class="file-label">
+                        <input id="file" class="file-input" type="file" name="filefield">
+                        <span class="file-cta">
+                            <span class="file-icon">
+                                <i class="fas fa-upload"></i>
+                            </span>
+                            <span class="file-label">
+                                PDF auswählen...
+                            </span>
+                        </span>
+                        <span id="filename" class="file-name">
+                            keine Datei ausgewählt
+                        </span>
+                    </label>
+                </div>
+        </div>
+
+        <div class="field has-addons has-addons-centered">
+            <div class="control">
+                <input type="submit" class="button is-primary" value="PDF schützen"></input>
+            </div>
+        </div>
+
+
+
+        <!-- <input type="submit"> -->
+        </form>
+    </div>
+
+
+
+</body>
+
+</html>

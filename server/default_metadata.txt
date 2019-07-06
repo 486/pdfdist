@@ -1,0 +1,9 @@
+InfoBegin
+InfoKey: Creator
+InfoValue: -
+InfoBegin
+InfoKey: Title
+InfoValue: -
+InfoBegin
+InfoKey: Producer
+InfoValue: pdf.hypescaler.com
