@@ -3,6 +3,7 @@ const app = express()
 const Busboy = require('busboy');
 const protectPdf = require('./server/protect_pdf')
 const contentDisposition = require('content-disposition')
+const ps = require('./server/ps')
 
 app.use(express.static('public'));
 
@@ -23,6 +24,9 @@ app.post('/protect_pdf', function (req, res) {
     } 
   });
   busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
+    const psInfo = setInterval(function() {
+      ps()
+    }, 500)
     console.log('File [' + fieldname + ']: filename: ' + filename + ', encoding: ' + encoding + ', mimetype: ' + mimetype);
     /*
     file.on('data', function (data) {
@@ -35,7 +39,11 @@ app.post('/protect_pdf', function (req, res) {
       'Content-Disposition': contentDisposition(filename),
       'Content-Type': 'application/pdf'
     });
-    protectPdf(file).pipe(res)
+    const stream = protectPdf(file)
+    stream.pipe(res)
+    stream.on('end', function() {
+      clearInterval(psInfo)
+    })
     file.on('end', function () {
       console.log('File [' + fieldname + '] Finished');
     });
