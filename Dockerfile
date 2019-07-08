@@ -1,4 +1,4 @@
-FROM centos:7
+FROM marketplace.gcr.io/google/centos7
 RUN yum -y localinstall https://www.linuxglobal.com/static/blog/pdftk-2.02-1.el7.x86_64.rpm
 RUN yum -y install ImageMagick-6.7.8.9
 RUN curl https://nodejs.org/dist/v10.16.0/node-v10.16.0-linux-x64.tar.xz | tar --strip-components 1 -xJv -C /usr/local
