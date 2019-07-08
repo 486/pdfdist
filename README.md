@@ -17,3 +17,5 @@ gcloud domains verify hypescaler.com
 gcloud beta run domain-mappings create --service pdfdist --domain pdf.hypescaler.com --platform managed --region us-central1
 
 gcloud beta run domain-mappings describe --domain pdf.hypescaler.com --platform managed --region us-central1
+
+https://cloud.google.com/run/docs/continuous-deployment

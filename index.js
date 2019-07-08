@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const Busboy = require('busboy');
 const protectPdf = require('./server/protect_pdf')
+const contentDisposition = require('content-disposition')
 
 app.use(express.static('public'));
 
@@ -31,7 +32,7 @@ app.post('/protect_pdf', function (req, res) {
     // res.writeHead(200)
     // res.setHeader('Content-Type', 'application/pdf');
     res.writeHead(200, {
-      'Content-Disposition': `attachment;filename=${filename}`,
+      'Content-Disposition': contentDisposition(filename),
       'Content-Type': 'application/pdf'
     });
     protectPdf(file).pipe(res)
