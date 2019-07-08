@@ -1,5 +1,17 @@
 steps:
+  # build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'gcr.io/sensei-f7eaa/pdfdist', '.' ]
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/${_IMAGE_NAME}', '.']
+  # push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/${_IMAGE_NAME}']
+  # Deploy container image to Cloud Run
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['beta', 'run', 'deploy', '${_IMAGE_NAME}', '--image', 'gcr.io/$PROJECT_ID/${_IMAGE_NAME}', '--region', '${_REGION}','--platform', '${_PLATFORM}', '--memory', '${_MEMORY}']
 images:
-- 'gcr.io/sensei-f7eaa/pdfdist'
+- gcr.io/$PROJECT_ID/${_IMAGE_NAME}
+substitutions:
+    _IMAGE_NAME: pdfdist
+    _REGION: us-central1
+    _PLATFORM: managed
+    _MEMORY: 1Gi
