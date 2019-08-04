@@ -4,7 +4,7 @@
   "description": "convert -density 300 -quality 80 -compress jpeg Karten.pdf Karten-magick.pdf pdftk Karten-magick.pdf output Karten-tk.pdf owner_pw secret verbose allow Printing DegradedPrinting",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cd test && node test.js"
   },
   "author": "",
   "license": "ISC",

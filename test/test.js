@@ -5,8 +5,8 @@ const pdftk = require('../server/pdftk')
 test()
 
 function test() {
-    const stdin = fs.createReadStream('test/test.pdf')
-    const file = fs.createWriteStream('test/output.pdf')
+    const stdin = fs.createReadStream('test.pdf')
+    const file = fs.createWriteStream('output/output.pdf')
     const convertProcess = convert()
     const pdftkProcess = pdftk()
     stdin.pipe(convertProcess.stdin)
