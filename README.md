@@ -17,7 +17,7 @@ gcloud alpha billing projects link ${PROJECT_ID} --billing-account $(gcloud alph
 
 # Activate the required GCP APIs
 
-gcloud services enable cloudbuild.googleapis.com run.googleapis.com containerregistry.googleapis.com
+gcloud services enable cloudbuild.googleapis.com run.googleapis.com containerregistry.googleapis.com containerscanning.googleapis.com
 
 # Check if they are really activated
 
@@ -40,6 +40,16 @@ If you want to pull the image locally:
 ```
 gcloud auth configure-docker
 docker pull gcr.io/${PROJECT_ID}/pdfdist
+```
+
+## Security Scanning
+
+We enabled security scanning by adding the GCP API `containerscanning.googleapis.com` during setup. To check for issues:
+
+```
+gcloud beta container images list-tags --show-occurrences gcr.io/${PROJECT_ID}/pdfdist
+
+gcloud beta container images describe gcr.io/${PROJECT_ID}/pdfdist@sha256:<image_hash>
 ```
 
 ## Cloud Run it
