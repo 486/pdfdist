@@ -2,3 +2,4 @@ node_modules
 test/~$test.docx
 .DS_Store
 output
+.vscode
