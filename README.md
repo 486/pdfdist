@@ -1,6 +1,6 @@
 # Cloud Run Example: Flatten PDFs for distribution
 
-This a Cloud Run example including Cloud Build. It accompanies my [blog post](https://blog.hypescaler.com).
+This a Cloud Run example including Cloud Build. It accompanies my [blog post](https://blog.hypescaler.com/003-containers-cloud-run/).
 
 ## Setup
 
