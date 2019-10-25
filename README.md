@@ -5,30 +5,16 @@ This a Cloud Run example including Cloud Build. It accompanies my [blog post](ht
 ## Setup
 
 ```
-export PROJECT_ID=<choose>
 
 gcloud auth login
 
-gcloud projects create ${PROJECT_ID} --set-as-default
+# WARNING: This takes the first billing account from your list. Change accordingly in the script if needed.
 
-# Set billing. WARNING: This takes the first billing account from your list. Change accordingly.
+./setup.sh ${PROJECT_ID}
 
-gcloud alpha billing projects link ${PROJECT_ID} --billing-account $(gcloud alpha billing accounts list --limit=1 --format='value(name.basename())')
-
-# Activate the required GCP APIs
-
-gcloud services enable cloudbuild.googleapis.com run.googleapis.com containerregistry.googleapis.com containerscanning.googleapis.com
-
-# Check if they are really activated
-
-gcloud services list --enabled
-
-# Give the Cloud Build service account the roles to be able to deploy to Cloud Run
-
-account=$(gcloud projects get-iam-policy $PROJECT_ID --flatten="bindings[].members" --format="value(bindings.members)" --filter="bindings.role:roles/cloudbuild.builds.builder");gcloud projects add-iam-policy-binding ${PROJECT_ID} --member=$account --role=roles/run.admin;gcloud projects add-iam-policy-binding ${PROJECT_ID} --member=$account --role=roles/iam.serviceAccountUser
 ```
 
-## Cloud Build it
+## Cloud Build & Run it
 
 ```
 gcloud builds submit --config cloudbuild.yaml .
@@ -50,12 +36,6 @@ We enabled security scanning by adding the GCP API `containerscanning.googleapis
 gcloud beta container images list-tags --show-occurrences gcr.io/${PROJECT_ID}/pdfdist
 
 gcloud beta container images describe gcr.io/${PROJECT_ID}/pdfdist@sha256:<image_hash>
-```
-
-## Cloud Run it
-
-```
-gcloud beta run deploy pdfdist --image gcr.io/${PROJECT_ID}/pdfdist --platform managed --region us-central1 --memory 1Gi
 ```
 
 # Using $YOUR_DOMAIN
